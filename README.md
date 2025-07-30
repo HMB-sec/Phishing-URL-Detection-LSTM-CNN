@@ -1,19 +1,19 @@
 
 ---
 
-## 🧠 Model Architecture
+## Model Architecture
 
 The hybrid model utilizes both sequential and spatial feature learning:
 
-- 🔹 **LSTM (Long Short-Term Memory)** to capture sequential patterns in features  
-- 🔹 **1D CNN (Convolutional Neural Networks)** to extract spatial correlations  
-- 🔹 **Dense Layers** for final classification  
+- **LSTM (Long Short-Term Memory)** to capture sequential patterns in features  
+- **1D CNN (Convolutional Neural Networks)** to extract spatial correlations  
+- **Dense Layers** for final classification  
 
 This combination improves detection accuracy and minimizes false positives.
 
 ---
 
-## 📊 Dataset Overview
+## Dataset Overview
 
 The dataset contains **90 engineered features** extracted from URLs. These include:
 
@@ -22,7 +22,7 @@ The dataset contains **90 engineered features** extracted from URLs. These inclu
 - HTML/JS behaviors (like iframe, onmouseover, etc.)
 - WHOIS and DNS metadata
 
-📄 Full feature descriptions are documented in:  
+Full feature descriptions are documented in:  
 [`Phishing Features Doc.pdf`](./Phishing%20Features%20Doc.pdf)
 
 The `label` column indicates:
@@ -31,9 +31,9 @@ The `label` column indicates:
 
 ---
 
-## 🚀 Getting Started
+## Getting Started
 
-### 1️⃣ Install Dependencies
+### Install Dependencies
 
 Ensure Python ≥3.7 is installed. Then:
 
