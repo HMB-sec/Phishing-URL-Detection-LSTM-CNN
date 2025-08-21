@@ -1,10 +1,12 @@
-name: CI for Phishing URL Detection
+name: CI Workflow
 
 on:
   push:
-    branches: [ "main" ]
+    branches:
+      - main
   pull_request:
-    branches: [ "main" ]
+    branches:
+      - main
 
 jobs:
   build:
@@ -12,30 +14,30 @@ jobs:
     container: python:3.9-slim
 
     steps:
-      # 1. Checkout repo
       - name: Checkout code
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4   # ✅ latest
 
-      # 2. Set up Python and install dependencies
-      - name: Install dependencies
+      - name: Set up Python
         run: |
           python -m pip install --upgrade pip
-          pip install -r requirements.txt
-          pip install nbconvert jupyter ipykernel flake8
 
-      # 3. Lint Python files
+      - name: Install dependencies
+        run: |
+          pip install -r requirements.txt
+
       - name: Lint with flake8
         run: |
-          flake8 --count --max-line-length=127 --statistics
+          pip install flake8
+          flake8 --count --select=E9,F63,F7,F82 --show-source --statistics
+          flake8 --count --max-complexity=10 --max-line-length=127 --statistics
 
-      # 4. Run Jupyter Notebook end-to-end
-      - name: Run Notebook
+      - name: Run Jupyter notebook
         run: |
+          pip install jupyter
           jupyter nbconvert --to notebook --execute LSTM-CNN.ipynb --output executed_notebook.ipynb
 
-      # 5. Upload executed notebook as artifact (so you can download and check results)
-      - name: Upload notebook artifact
-        uses: actions/upload-artifact@v3
+      - name: Upload executed notebook
+        uses: actions/upload-artifact@v4   # ✅ updated version
         with:
           name: executed-notebook
           path: executed_notebook.ipynb
